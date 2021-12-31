@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Navv from './Navv';
 import './App.css';
 import Movielist from './Movielist';
+import Desc from './description';
+import { Route } from 'react-router-dom';
 function App() {
   const   [moviedata,setMoviedata]=useState([ {
     id: 0,
@@ -37,7 +39,7 @@ function App() {
     title: "Breaking bad",
     photo:
       "https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-    rate: 4.5,
+    rate: 4,
     description:
       "A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family's future.",
     trailer: "https://www.youtube.com/embed/lrcqbavlbyQ",
@@ -47,7 +49,7 @@ function App() {
     title: "Prison Break",
     photo:
       "https://upload.wikimedia.org/wikipedia/en/5/54/Prison-break-season-4-dvd.jpg",
-    rate: 4.2,
+    rate: 4,
     description:
       "Due to a political conspiracy, an innocent man is sent to death row and his only hope is his brother, who makes it his mission to deliberately get himself sent to the same prison in order to break the both of them out, from the inside.",
     trailer: "https://www.youtube.com/embed/AL9zLctDJaU",
@@ -57,7 +59,7 @@ function App() {
     title: "Gangs of London",
     photo:
       "https://m.media-amazon.com/images/M/MV5BOGJlZTE0MTQtZDdmMS00YWViLThlMDktYzk1N2RhMjY0NGEyXkEyXkFqcGdeQXVyMDA4NzMyOA@@._V1_.jpg",
-    rate: 4.1,
+    rate: 4,
     description:
       "Tells the story of London being torn apart by the turbulent power struggles of its international gangs and the sudden power vacuum that's created when the head of London's most powerful crime family is assassinated.",
     trailer: "https://www.youtube.com/embed/4CJ5p4XisHs",
@@ -77,7 +79,7 @@ function App() {
     title: "Lethal Weapon",
     photo:
       "https://vignette.wikia.nocookie.net/lethalweapon/images/2/2e/Lethal_Weapon_TV_series_poster.jpg/revision/latest/scale-to-width-down/340?cb=20160819024657",
-    rate: 3.8,
+    rate: 3,
     description:
       "A slightly unhinged cop is partnered with a veteran detective trying to maintain a low stress level in his life.",
     trailer: "https://www.youtube.com/embed/wN8h4-oyAbo",
@@ -87,7 +89,7 @@ function App() {
     title: "Dexter",
     photo:
       "https://images-na.ssl-images-amazon.com/images/I/81JKXT1j0OL._SL1500_.jpg",
-    rate: 4.2,
+    rate: 4,
     description:
       "By day, mild-mannered Dexter is a blood-spatter analyst for the Miami police. But at night, he is a serial killer who only targets other murderers.",
     trailer: "https://www.youtube.com/embed/YQeUmSD1c3g",
@@ -97,7 +99,7 @@ function App() {
     title: "Black Sails",
     photo:
       "https://m.media-amazon.com/images/M/MV5BZmExNzU1M2YtNGUzOC00MmM0LWEwYzYtZWJiYjYxNDcwY2E0XkEyXkFqcGdeQXVyMTYzMDM0NTU@._V1_.jpg",
-    rate: 3.5,
+    rate: 3,
     description:
       "Follows Captain Flint and his pirates twenty years prior to Robert Louis Stevenson's classic novel Treasure Island",
     trailer: "https://www.youtube.com/embed/rT2Y5jjBNpQ",
@@ -170,8 +172,12 @@ const [rate,setRate]=useState(0)
     
     
     <div className="App">
+
+
+      
  <Navv moviedata={moviedata} setMoviedata={setMoviedata} setTitle={setTitle} title={title}  setrate={setRate} rate={rate}/>
- <Movielist  moviedata={moviedata} setMoviedata={setMoviedata} title={title} rate={rate}/>
+ <Route exact path="/" render={()=><Movielist moviedata={moviedata} setMoviedata={setMoviedata} title={title} rate={rate} ></Movielist>}></Route> 
+ <Route  path='/description/:id' render={(props)=><Desc moviedata={moviedata}  {...props}></Desc>}  ></Route>
      
 
 
